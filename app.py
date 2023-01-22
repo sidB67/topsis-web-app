@@ -50,18 +50,18 @@ def topsis(df, weights, criteria,result_file):
 
     for i in range(cols):
         if criteria[i] == '-':
-            df2_ideal_best.append(round(df2.iloc[:, i].min(), 2))
-            df2_ideal_worst.append(round(df2.iloc[:, i].max(), 2))
+            df2_ideal_best.append(df2.iloc[:, i].min())
+            df2_ideal_worst.append(df2.iloc[:, i].max())
         else:
-            df2_ideal_best.append(round(df2.iloc[:, i].max(), 2))
-            df2_ideal_worst.append(round(df2.iloc[:, i].min(), 2))
+            df2_ideal_best.append(df2.iloc[:, i].max())
+            df2_ideal_worst.append(df2.iloc[:, i].min())
     df2_s_best = []
     df2_s_worst = []
     for i in range(rows):
-        df2_s_best.append(round(np.sqrt(np.sum(np.square(df2.iloc[i, :] - df2_ideal_best))), 2))
-        df2_s_worst.append(round(np.sqrt(np.sum(np.square(df2.iloc[i, :] - df2_ideal_worst))), 2))
+        df2_s_best.append(np.sqrt(np.sum(np.square(df2.iloc[i, :] - df2_ideal_best))))
+        df2_s_worst.append(np.sqrt(np.sum(np.square(df2.iloc[i, :] - df2_ideal_worst))))
 
-    topsis_score = [round(x/(x+y), 2) for x, y in zip(df2_s_worst, df2_s_best)]
+    topsis_score = [x/(x+y) for x, y in zip(df2_s_worst, df2_s_best)]
 
     sorted_score = sorted(topsis_score, reverse=True)
 
