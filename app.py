@@ -9,7 +9,7 @@ from email.mime.text import MIMEText
 
 st.set_page_config(page_title="Topsis - Sidharth Bahl - 102017016",)
 st.title('Topsis-Sidharth')
-# PASSWORD = st.secrets["password"]
+PASSWORD = st.secrets["PASSWORD"]
 
 def checkValidation(df,weights,criteria,result_file) :
     if weights.__contains__(',') == False:
